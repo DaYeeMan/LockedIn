@@ -1,0 +1,60 @@
+data:
+  data_dir: data
+  normalization_method: standard
+  normalize_features: true
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2
+  processed_data_dir: data/processed
+  raw_data_dir: data/raw
+experiment:
+  alpha_range: !!python/tuple
+  - 0.05
+  - 0.6
+  batch_size: 64
+  beta_range: !!python/tuple
+  - 0.3
+  - 0.9
+  description: SABR MDA-CNN volatility surface modeling
+  early_stopping_patience: 20
+  epochs: 200
+  hf_budget: 200
+  learning_rate: 0.0003
+  maturity_range: !!python/tuple
+  - 1.0
+  - 10.0
+  mc_paths: 100000
+  n_maturities: 10
+  n_parameter_sets: 1000
+  n_point_features: 8
+  n_strikes: 21
+  name: basic_example
+  nu_range: !!python/tuple
+  - 0.05
+  - 0.9
+  output_dir: results
+  patch_size: !!python/tuple
+  - 9
+  - 9
+  random_seed: 42
+  rho_range: !!python/tuple
+  - -0.75
+  - 0.75
+  validation_split: 0.15
+model:
+  cnn_activation: relu
+  cnn_filters:
+  - 32
+  - 64
+  - 128
+  cnn_kernel_sizes:
+  - 3
+  - 3
+  - 3
+  dropout_rate: 0.2
+  fusion_dim: 128
+  mlp_activation: relu
+  mlp_hidden_dims:
+  - 64
+  - 64
+  model_type: mda_cnn

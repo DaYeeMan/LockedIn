@@ -1,0 +1,20 @@
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Starting experiment: basic_example_20251015_151756
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Random seed: 42
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Output directory: results
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Configuration saved to: results\config_basic_example_20251015_151756.yaml
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Experiment started successfully
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Random seed: 42
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Batch size: 64
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Metric example_loss: 0.123
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Metric example_accuracy: 0.95
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Hyperparameters:
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m -   learning_rate: 0.0003
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m -   batch_size: 64
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m -   epochs: 200
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Created model directory: results\models
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Created plot directory: results\plots
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Artifact saved: results\artifacts\example.pkl
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Saved example artifact to: results\artifacts\example.pkl
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Experiment completed: basic_example_20251015_151756
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Total duration: 0:00:00.009362
+2025-10-15 15:17:56 - experiment.basic_example_20251015_151756 - [32mINFO[0m - Results saved in: results

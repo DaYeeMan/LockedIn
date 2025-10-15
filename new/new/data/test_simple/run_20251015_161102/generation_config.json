@@ -1,0 +1,49 @@
+{
+  "output_dir": "new/data/test_simple",
+  "n_parameter_sets": 2,
+  "sampling_strategy": "uniform",
+  "mc_config": {
+    "n_paths": 10000,
+    "n_steps": 100,
+    "random_seed": 42,
+    "use_antithetic": true,
+    "convergence_check": true,
+    "convergence_tolerance": 0.0001,
+    "max_iterations": 5
+  },
+  "hagan_config": {
+    "use_pde_correction": true,
+    "numerical_tolerance": 1e-12,
+    "max_moneyness": 10.0,
+    "min_maturity": 1e-06,
+    "beta_threshold": 1e-06
+  },
+  "grid_config": {
+    "maturity_range": [
+      1.0,
+      10.0
+    ],
+    "n_strikes": 5,
+    "n_maturities": 2,
+    "include_extended_wings": false
+  },
+  "validation_enabled": true,
+  "save_intermediate": false,
+  "parallel_processing": false,
+  "n_workers": null,
+  "random_seed": 42,
+  "create_visualizations": false,
+  "visualization_config": {
+    "figure_size": [
+      12,
+      8
+    ],
+    "dpi": 300,
+    "color_scheme": "viridis",
+    "save_format": "png",
+    "interactive": true,
+    "show_plots": true,
+    "save_plots": true,
+    "output_dir": "new/data/test_simple/plots"
+  }
+}

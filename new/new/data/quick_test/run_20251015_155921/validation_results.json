@@ -1,0 +1,195 @@
+{
+  "total_sets": 2,
+  "passed_sets": 0,
+  "failed_sets": 2,
+  "warning_sets": 2,
+  "individual_results": [
+    {
+      "passed": false,
+      "warnings": [
+        "ATM volatility inconsistent with alpha: MC ATM error: 335.60%, Hagan ATM error: 1.35%",
+        "Data completeness issue: MC coverage: 7.6%, Hagan coverage: 100.0%"
+      ],
+      "errors": [
+        "Numerical stability issue: NaN ratio: 46.2%, Inf ratio: 0.0%",
+        "Overall quality score too low"
+      ],
+      "checks": {
+        "mc_volatility_bounds": {
+          "passed": false,
+          "message": "Monte Carlo volatilities in range [1.0698, 3.6447]",
+          "stats": {
+            "min_volatility": 1.0697829887534243,
+            "max_volatility": 3.6446872259736165,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 16
+          }
+        },
+        "hagan_volatility_bounds": {
+          "passed": true,
+          "message": "Hagan volatilities in range [0.5071, 0.7741]",
+          "stats": {
+            "min_volatility": 0.5070855349041962,
+            "max_volatility": 0.7741305913050215,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 210
+          }
+        },
+        "atm_consistency": {
+          "passed": false,
+          "message": "MC ATM error: 335.60%, Hagan ATM error: 1.35%",
+          "stats": {
+            "mc_atm_volatility": 2.5545659460023087,
+            "hagan_atm_volatility": 0.5943882865344632,
+            "alpha": 0.5864464342627269,
+            "mc_relative_error": 3.3560090005728775,
+            "hagan_relative_error": 0.013542331929634235
+          }
+        },
+        "data_completeness": {
+          "passed": false,
+          "message": "MC coverage: 7.6%, Hagan coverage: 100.0%",
+          "stats": {
+            "mc_valid_ratio": 0.0761904761904762,
+            "hagan_valid_ratio": 1.0,
+            "mc_total_points": 210,
+            "hagan_total_points": 210
+          }
+        },
+        "residual_outliers": {
+          "outlier_count": 0,
+          "outlier_ratio": 0.0,
+          "message": "Found 0 outliers (0.0%)",
+          "stats": {
+            "mean_residual": 1.2475465455060477,
+            "std_residual": 0.67926985804741,
+            "max_z_score": 2.6170335599081835,
+            "threshold": 3.0
+          }
+        },
+        "surface_smoothness": {
+          "passed": true,
+          "message": "Smoothness issues in 0/10 smiles",
+          "stats": {
+            "smoothness_ratio": 1.0,
+            "issues_count": 0,
+            "total_smiles": 10
+          }
+        },
+        "numerical_stability": {
+          "passed": false,
+          "message": "NaN ratio: 46.2%, Inf ratio: 0.0%",
+          "stats": {
+            "mc_nan_count": 194,
+            "mc_inf_count": 0,
+            "hagan_nan_count": 0,
+            "hagan_inf_count": 0,
+            "nan_ratio": 0.46190476190476193,
+            "inf_ratio": 0.0
+          }
+        }
+      },
+      "quality_score": 0.252,
+      "parameter_set_index": 0
+    },
+    {
+      "passed": false,
+      "warnings": [
+        "ATM volatility inconsistent with alpha: MC ATM error: 298.08%, Hagan ATM error: 1.85%",
+        "Data completeness issue: MC coverage: 19.5%, Hagan coverage: 100.0%",
+        "Found 1 residual outliers"
+      ],
+      "errors": [
+        "Numerical stability issue: NaN ratio: 40.2%, Inf ratio: 0.0%",
+        "Overall quality score too low"
+      ],
+      "checks": {
+        "mc_volatility_bounds": {
+          "passed": false,
+          "message": "Monte Carlo volatilities in range [0.3442, 3.4346]",
+          "stats": {
+            "min_volatility": 0.3442324371813578,
+            "max_volatility": 3.4345689914835402,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 41
+          }
+        },
+        "hagan_volatility_bounds": {
+          "passed": true,
+          "message": "Hagan volatilities in range [0.1348, 0.3301]",
+          "stats": {
+            "min_volatility": 0.13478132763946316,
+            "max_volatility": 0.3301282751986956,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 210
+          }
+        },
+        "atm_consistency": {
+          "passed": false,
+          "message": "MC ATM error: 298.08%, Hagan ATM error: 1.85%",
+          "stats": {
+            "mc_atm_volatility": 0.6090523319611427,
+            "hagan_atm_volatility": 0.15583121926255533,
+            "alpha": 0.15299853268302466,
+            "mc_relative_error": 2.980772372653726,
+            "hagan_relative_error": 0.018514468928923028
+          }
+        },
+        "data_completeness": {
+          "passed": false,
+          "message": "MC coverage: 19.5%, Hagan coverage: 100.0%",
+          "stats": {
+            "mc_valid_ratio": 0.19523809523809524,
+            "hagan_valid_ratio": 1.0,
+            "mc_total_points": 210,
+            "hagan_total_points": 210
+          }
+        },
+        "residual_outliers": {
+          "outlier_count": 1,
+          "outlier_ratio": 0.024390243902439025,
+          "message": "Found 1 outliers (2.4%)",
+          "stats": {
+            "mean_residual": 0.8736525150770537,
+            "std_residual": 0.6347437125905994,
+            "max_z_score": 3.6740808012431994,
+            "threshold": 3.0
+          }
+        },
+        "surface_smoothness": {
+          "passed": true,
+          "message": "Smoothness issues in 0/10 smiles",
+          "stats": {
+            "smoothness_ratio": 1.0,
+            "issues_count": 0,
+            "total_smiles": 10
+          }
+        },
+        "numerical_stability": {
+          "passed": false,
+          "message": "NaN ratio: 40.2%, Inf ratio: 0.0%",
+          "stats": {
+            "mc_nan_count": 169,
+            "mc_inf_count": 0,
+            "hagan_nan_count": 0,
+            "hagan_inf_count": 0,
+            "nan_ratio": 0.4023809523809524,
+            "inf_ratio": 0.0
+          }
+        }
+      },
+      "quality_score": 0.25138536585365856,
+      "parameter_set_index": 1
+    }
+  ],
+  "overall_quality_score": 0.2516926829268293,
+  "common_issues": {
+    "ATM volatility inconsistent with alpha": 2,
+    "Data completeness issue": 2,
+    "Found 1 residual outliers": 1
+  }
+}
