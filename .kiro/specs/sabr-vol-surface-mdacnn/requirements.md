@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project aims to develop a Multi-fidelity Data Aggregation CNN (MDA-CNN) architecture for SABR volatility surface modeling that outperforms existing approaches. The system will generate both high-fidelity Monte Carlo simulations and low-fidelity Hagan analytical surfaces, then train an MDA-CNN model to predict residuals between MC and Hagan surfaces. The key research hypothesis is that MDA-CNN can achieve superior accuracy than Funahashi's "SABR Equipped with AI Wings" baseline model, particularly in wing regions (deep ITM/OTM), while using significantly fewer high-fidelity data points by leveraging local surface patches that capture spatial volatility patterns. The goal is to demonstrate superior data efficiency and accuracy for research publication.
+This project aims to develop a Multi-fidelity Data Aggregation CNN (MDA-CNN) architecture for SABR volatility surface modeling and compare it directly against Funahashi's "SABR Equipped with AI Wings" baseline model. The system will generate both high-fidelity Monte Carlo simulations and low-fidelity Hagan analytical surfaces, then train both MDA-CNN and Funahashi baseline models to predict residuals between MC and Hagan surfaces using the same HF data budget. The goal is to demonstrate whether MDA-CNN can achieve superior accuracy by leveraging local surface patches, with direct comparison to published Funahashi results.
 
 ## Requirements
 
@@ -33,27 +33,25 @@ This project aims to develop a Multi-fidelity Data Aggregation CNN (MDA-CNN) arc
 
 ### Requirement 3: Training and Evaluation Framework
 
-**User Story:** As a researcher, I want a comprehensive training and evaluation system that compares different model architectures and HF data budgets, so that I can demonstrate the effectiveness of the MDA-CNN approach.
+**User Story:** As a researcher, I want to train and evaluate both MDA-CNN and Funahashi baseline models using the same HF data budget, so that I can make a direct comparison of their performance.
 
 #### Acceptance Criteria
 
-1. WHEN training models THEN the system SHALL implement Funahashi's exact baseline model (5-layer, 32 neurons, ReLU activation, residual learning) and additional baseline models (direct MLP, residual MLP without patches)
-2. WHEN evaluating models THEN the system SHALL test performance across different HF data budgets (e.g., 50, 100, 200, 500 points)
-3. WHEN computing metrics THEN the system SHALL calculate MSE, relative percentage error, RMSE, and MAE to enable direct comparison with Funahashi's results
-4. WHEN evaluating THEN the system SHALL assess performance separately for ATM, ITM, and OTM regions with special focus on deep wing performance where residuals are largest
-5. WHEN training is complete THEN the system SHALL save model checkpoints and training logs
+1. WHEN training models THEN the system SHALL implement Funahashi's exact baseline model (5-layer, 32 neurons, ReLU activation, residual learning)
+2. WHEN evaluating models THEN the system SHALL train both models using the same fixed HF data budget
+3. WHEN computing metrics THEN the system SHALL calculate MSE, relative percentage error, RMSE, and MAE to enable direct comparison with Funahashi's published results
+4. WHEN training is complete THEN the system SHALL save model checkpoints and training logs
 
-### Requirement 4: Visualization and Analysis
+### Requirement 4: Visualization and Comparison
 
-**User Story:** As a quantitative analyst, I want comprehensive visualization tools that show model performance and surface comparisons, so that I can analyze and validate the model's effectiveness across different market conditions.
+**User Story:** As a quantitative analyst, I want to visualize generated surfaces and compare model errors directly against Funahashi's published results, so that I can validate the effectiveness of the MDA-CNN approach.
 
 #### Acceptance Criteria
 
-1. WHEN generating visualizations THEN the system SHALL plot volatility smiles comparing HF MC, LF Hagan, baseline predictions, and MDA-CNN predictions
-2. WHEN displaying results THEN the system SHALL create error analysis plots showing performance vs HF data budget
-3. WHEN visualizing surfaces THEN the system SHALL generate 3D surface plots for different parameter combinations
-4. WHEN analyzing performance THEN the system SHALL create residual distribution plots before and after ML correction
-5. WHEN presenting results THEN the system SHALL generate summary statistics and performance comparison tables
+1. WHEN generating visualizations THEN the system SHALL plot volatility surfaces comparing MC, Hagan, Funahashi baseline, and MDA-CNN predictions
+2. WHEN displaying results THEN the system SHALL create error comparison plots showing MDA-CNN vs Funahashi baseline performance
+3. WHEN visualizing surfaces THEN the system SHALL generate 3D surface plots and volatility smiles for different parameter combinations
+4. WHEN presenting results THEN the system SHALL generate comparison tables matching Funahashi's paper format for direct validation
 
 ### Requirement 5: Project Organization and Reproducibility
 
@@ -67,27 +65,13 @@ This project aims to develop a Multi-fidelity Data Aggregation CNN (MDA-CNN) arc
 4. WHEN documenting code THEN the system SHALL include comprehensive docstrings and comments
 5. WHEN providing configuration THEN the system SHALL use configuration files for hyperparameters and experimental settings
 
-### Requirement 6: Research Comparison and Validation
+### Requirement 6: Direct Model Comparison
 
-**User Story:** As a researcher, I want to demonstrate that MDA-CNN achieves superior data efficiency compared to Funahashi's baseline while maintaining comparable accuracy, so that I can publish compelling research results.
-
-#### Acceptance Criteria
-
-1. WHEN comparing models THEN the system SHALL train both MDA-CNN and Funahashi baseline on identical parameter spaces and datasets
-2. WHEN evaluating data efficiency THEN the system SHALL demonstrate MDA-CNN performance with varying HF point budgets (50, 100, 200, 500 points)
-3. WHEN generating results THEN the system SHALL produce comparison tables matching Funahashi's paper format for direct result comparison
-4. WHEN analyzing wing performance THEN the system SHALL demonstrate MDA-CNN superior accuracy in deep ITM/OTM regions where MC-Hagan residuals are largest
-5. WHEN analyzing performance THEN the system SHALL show MDA-CNN achieves <1% error with fewer HF points than Funahashi's approach requires
-6. WHEN documenting results THEN the system SHALL generate research-quality plots and statistical analysis suitable for publication
-
-### Requirement 7: Performance Optimization
-
-**User Story:** As a computational researcher, I want the system to efficiently handle large-scale volatility surface generation and model training, so that experiments can be completed in reasonable time frames.
+**User Story:** As a researcher, I want to compare MDA-CNN directly against Funahashi's baseline using the same HF data budget, so that I can determine which approach achieves better accuracy.
 
 #### Acceptance Criteria
 
-1. WHEN generating MC data THEN the system SHALL support parallel processing for multiple parameter combinations
-2. WHEN training models THEN the system SHALL utilize GPU acceleration when available
-3. WHEN processing data THEN the system SHALL implement efficient data loading and batching strategies
-4. WHEN running experiments THEN the system SHALL provide progress tracking and estimated completion times
-5. IF memory constraints exist THEN the system SHALL implement data streaming or chunking strategies
+1. WHEN comparing models THEN the system SHALL train both MDA-CNN and Funahashi baseline on identical parameter spaces and datasets with the same HF budget
+2. WHEN generating results THEN the system SHALL produce comparison tables matching Funahashi's paper format for direct result validation
+3. WHEN documenting results THEN the system SHALL generate error comparison plots and surface visualizations suitable for analysis
+

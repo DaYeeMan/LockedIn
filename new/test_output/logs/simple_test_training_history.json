@@ -1,0 +1,13 @@
+[
+  {
+    "loss":1.0585061312,
+    "mae":0.8411408067,
+    "relative_percentage_error_metric":355.1426391602,
+    "rmse_metric":1.0300248861,
+    "val_loss":0.7176622748,
+    "val_mae":0.7221039534,
+    "val_relative_percentage_error_metric":120.5953826904,
+    "val_rmse_metric":0.8329152465,
+    "learning_rate":0.0003
+  }
+]
