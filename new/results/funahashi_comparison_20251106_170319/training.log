@@ -1,0 +1,50 @@
+2025-11-06 17:03:19,826 - INFO - Starting Funahashi comparison training...
+2025-11-06 17:03:19,827 - INFO - Training samples: 84
+2025-11-06 17:03:19,839 - INFO - Patch size: 9x9
+2025-11-06 17:03:19,840 - INFO - Number of features: 10
+2025-11-06 17:03:19,843 - INFO - MDA-CNN parameters: 147,777
+2025-11-06 17:03:19,844 - INFO - Funahashi parameters: 4,609
+2025-11-06 17:03:19,844 - INFO - Training MDA-CNN...
+2025-11-06 17:03:21,657 - INFO - Epoch 1/100: Train Loss: 0.003361, Time: 0.14s
+2025-11-06 17:03:22,366 - INFO - Epoch 10/100: Train Loss: 0.000392, Time: 0.08s
+2025-11-06 17:03:23,166 - INFO - Epoch 20/100: Train Loss: 0.000190, Time: 0.08s
+2025-11-06 17:03:23,961 - INFO - Epoch 30/100: Train Loss: 0.000077, Time: 0.07s
+2025-11-06 17:03:24,767 - INFO - Epoch 40/100: Train Loss: 0.000095, Time: 0.07s
+2025-11-06 17:03:25,575 - INFO - Epoch 50/100: Train Loss: 0.000052, Time: 0.08s
+2025-11-06 17:03:26,359 - INFO - Epoch 60/100: Train Loss: 0.000046, Time: 0.07s
+2025-11-06 17:03:27,236 - INFO - Epoch 70/100: Train Loss: 0.000049, Time: 0.09s
+2025-11-06 17:03:28,164 - INFO - Epoch 80/100: Train Loss: 0.000026, Time: 0.08s
+2025-11-06 17:03:29,171 - INFO - Epoch 90/100: Train Loss: 0.000047, Time: 0.10s
+2025-11-06 17:03:30,139 - INFO - Epoch 100/100: Train Loss: 0.000022, Time: 0.09s
+2025-11-06 17:03:30,158 - INFO - MDA-CNN training completed!
+2025-11-06 17:03:30,159 - INFO - Training Funahashi...
+2025-11-06 17:03:30,168 - INFO - Epoch 1/100: Train Loss: 0.000201, Time: 0.01s
+2025-11-06 17:03:30,249 - INFO - Epoch 10/100: Train Loss: 0.000024, Time: 0.01s
+2025-11-06 17:03:30,341 - INFO - Epoch 20/100: Train Loss: 0.000005, Time: 0.01s
+2025-11-06 17:03:30,428 - INFO - Epoch 30/100: Train Loss: 0.000003, Time: 0.01s
+2025-11-06 17:03:30,519 - INFO - Epoch 40/100: Train Loss: 0.000001, Time: 0.01s
+2025-11-06 17:03:30,600 - INFO - Epoch 50/100: Train Loss: 0.000001, Time: 0.01s
+2025-11-06 17:03:30,689 - INFO - Epoch 60/100: Train Loss: 0.000001, Time: 0.01s
+2025-11-06 17:03:30,781 - INFO - Epoch 70/100: Train Loss: 0.000000, Time: 0.01s
+2025-11-06 17:03:30,875 - INFO - Epoch 80/100: Train Loss: 0.000000, Time: 0.01s
+2025-11-06 17:03:30,955 - INFO - Epoch 90/100: Train Loss: 0.000001, Time: 0.01s
+2025-11-06 17:03:31,038 - INFO - Epoch 100/100: Train Loss: 0.000000, Time: 0.01s
+2025-11-06 17:03:31,040 - INFO - Funahashi training completed!
+2025-11-06 17:03:31,040 - INFO - Evaluating models...
+2025-11-06 17:03:31,064 - INFO - ============================================================
+2025-11-06 17:03:31,064 - INFO - MODEL COMPARISON RESULTS
+2025-11-06 17:03:31,064 - INFO - ============================================================
+2025-11-06 17:03:31,064 - INFO - MDA-CNN:
+2025-11-06 17:03:31,064 - INFO -   MSE:  0.000011
+2025-11-06 17:03:31,065 - INFO -   RMSE: 0.003248
+2025-11-06 17:03:31,065 - INFO -   MAE:  0.002653
+2025-11-06 17:03:31,065 - INFO - 
+2025-11-06 17:03:31,066 - INFO - Funahashi Baseline:
+2025-11-06 17:03:31,066 - INFO -   MSE:  0.000000
+2025-11-06 17:03:31,066 - INFO -   RMSE: 0.000546
+2025-11-06 17:03:31,067 - INFO -   MAE:  0.000262
+2025-11-06 17:03:31,067 - INFO - 
+2025-11-06 17:03:31,067 - INFO - Improvement (MDA-CNN vs Funahashi):
+2025-11-06 17:03:31,067 - INFO -   MSE:  -3439.15%
+2025-11-06 17:03:31,068 - INFO -   RMSE: -494.91%
+2025-11-06 17:03:31,068 - INFO -   MAE:  -911.92%

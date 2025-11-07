@@ -1,0 +1,82 @@
+# Training Configuration for SABR Volatility Surface Modeling
+
+experiment:
+  name: "sabr_mdacnn_comparison"
+  description: "MDA-CNN vs Funahashi baseline comparison"
+  output_dir: "results"
+  random_seed: 42
+  
+  # Training parameters
+  batch_size: 64
+  learning_rate: 0.0003
+  epochs: 200
+  early_stopping_patience: 20
+  validation_split: 0.15
+  
+  # Model architecture
+  patch_size: [9, 9]
+  n_point_features: 10  # SABR params + strike + maturity + derived features
+
+model:
+  model_type: "mda_cnn"
+  
+  # CNN branch for processing surface patches
+  cnn_filters: [32, 64, 128]
+  cnn_kernel_sizes: [3, 3, 3]
+  cnn_activation: "relu"
+  
+  # MLP branch for processing point features
+  mlp_hidden_dims: [64, 64]
+  mlp_activation: "relu"
+  
+  # Fusion layer
+  fusion_dim: 128
+  dropout_rate: 0.2
+
+data:
+  # Data directories
+  data_dir: "data"
+  processed_data_dir: "data/processed"
+  
+  # Data loading settings
+  num_workers: 4
+  prefetch_factor: 2
+  pin_memory: true
+  
+  # Normalization (should match data generation settings)
+  normalize_features: true
+  normalize_patches: true
+
+training:
+  # Optimizer settings
+  optimizer: "adam"
+  weight_decay: 0.00001
+  
+  # Learning rate scheduler
+  scheduler: "step"
+  scheduler_step_size: 50
+  scheduler_gamma: 0.5
+  
+  # Loss function
+  loss_function: "mse"
+  
+  # Logging and checkpointing
+  log_interval: 10
+  save_interval: 50
+  
+  # Early stopping
+  early_stopping_metric: "val_loss"
+  early_stopping_mode: "min"
+
+# Funahashi baseline model settings
+funahashi:
+  # Exact architecture from Funahashi paper
+  hidden_layers: 5
+  neurons_per_layer: 32
+  activation: "relu"
+  use_residual_learning: true
+  
+  # Same training settings as MDA-CNN for fair comparison
+  learning_rate: 0.0003
+  batch_size: 64
+  epochs: 200

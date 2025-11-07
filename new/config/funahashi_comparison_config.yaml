@@ -1,0 +1,73 @@
+# Funahashi Direct Comparison Configuration
+# This config generates data using Funahashi's exact test cases for direct result comparison
+
+# Data Generation Parameters - Use Funahashi's exact test cases
+n_parameter_sets: 4  # Only the 4 test cases from Funahashi's paper
+sampling_strategy: "funahashi_exact"  # Special mode for exact parameter reproduction
+
+# Funahashi's Exact Test Cases
+funahashi_test_cases:
+  case_A:
+    F0: 1.0
+    alpha: 0.5
+    beta: 0.6
+    nu: 0.3
+    rho: -0.2
+  case_B:
+    F0: 1.0
+    alpha: 0.5
+    beta: 0.9
+    nu: 0.3
+    rho: -0.2
+  case_C:
+    F0: 1.0
+    alpha: 0.5
+    beta: 0.3
+    nu: 0.3
+    rho: -0.2
+  case_D:
+    F0: 1.0
+    alpha: 0.5
+    beta: 0.6
+    nu: 0.3
+    rho: -0.5
+
+# Funahashi's Strike Grid (from Table 3)
+funahashi_strikes: [0.4, 0.485, 0.57, 0.655, 0.74, 0.825, 0.91, 0.995, 1.08, 1.165, 1.25, 1.335, 1.42, 1.505, 1.59, 1.675, 1.76, 1.845, 1.93, 2.015, 2.1]
+
+# Monte Carlo Parameters - Balanced precision and speed
+mc_paths: 100000   # Good precision, reasonable speed
+mc_steps: 300      # Good time discretization
+use_antithetic: true
+convergence_check: true
+
+# Grid Parameters - Exact match to Funahashi (but 3-year maturity)
+n_strikes: 21      # Exactly 21 strikes as in Table 3
+n_maturities: 1    # Single maturity for direct comparison
+maturity_range: [3.0, 3.01]  # T = 3 years (slight range for validation)
+use_exact_strikes: true     # Use Funahashi's exact strike values
+
+# Preprocessing Parameters
+patch_size: 9
+validation_split: 0.0  # No validation split for exact comparison
+test_split: 0.0        # Use all data for comparison
+normalize_patches: true
+normalize_features: true
+min_samples_per_surface: 21  # All 21 strikes
+max_samples_per_surface: 21  # All 21 strikes
+
+# Processing Parameters
+parallel_processing: false  # Sequential for reproducibility
+create_visualizations: true # Generate comparison plots
+save_intermediate: true
+
+# Quality Control
+validation_enabled: true
+numerical_tolerance: 1.0e-12  # Good precision
+
+# Output Parameters
+output_dir: "data_funahashi_comparison"
+create_hdf5: true
+
+# Reproducibility - Match Funahashi's setup
+random_seed: 12345  # Fixed seed for exact reproduction

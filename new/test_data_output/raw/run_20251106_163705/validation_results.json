@@ -1,0 +1,262 @@
+{
+  "total_sets": 3,
+  "passed_sets": 3,
+  "failed_sets": 0,
+  "warning_sets": 0,
+  "individual_results": [
+    {
+      "passed": true,
+      "warnings": [],
+      "errors": [],
+      "checks": {
+        "mc_volatility_bounds": {
+          "passed": true,
+          "message": "Monte Carlo volatilities in range [0.1041, 0.3160]",
+          "stats": {
+            "min_volatility": 0.10414787224533952,
+            "max_volatility": 0.31601893972392137,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 9
+          }
+        },
+        "hagan_volatility_bounds": {
+          "passed": true,
+          "message": "Hagan volatilities in range [0.2677, 0.5249]",
+          "stats": {
+            "min_volatility": 0.2676792045906097,
+            "max_volatility": 0.5249087544167417,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 10
+          }
+        },
+        "atm_consistency": {
+          "passed": true,
+          "message": "MC ATM error: 7.46%, Hagan ATM error: 4.56%",
+          "stats": {
+            "mc_atm_volatility": 0.27508906607273037,
+            "hagan_atm_volatility": 0.2676792045906097,
+            "alpha": 0.2559970653660493,
+            "mc_relative_error": 0.0745789826902174,
+            "hagan_relative_error": 0.045633879465985676
+          }
+        },
+        "data_completeness": {
+          "passed": true,
+          "message": "MC coverage: 90.0%, Hagan coverage: 100.0%",
+          "stats": {
+            "mc_valid_ratio": 0.9,
+            "hagan_valid_ratio": 1.0,
+            "mc_total_points": 10,
+            "hagan_total_points": 10
+          }
+        },
+        "residual_outliers": {
+          "outlier_count": 0,
+          "outlier_ratio": 0.0,
+          "message": "Found 0 outliers (0.0%)",
+          "stats": {
+            "mean_residual": -0.1274289031621557,
+            "std_residual": 0.13955146228764165,
+            "max_z_score": 1.4351290705994164,
+            "threshold": 3.0
+          }
+        },
+        "surface_smoothness": {
+          "passed": true,
+          "message": "Smoothness issues in 0/2 smiles",
+          "stats": {
+            "smoothness_ratio": 1.0,
+            "issues_count": 0,
+            "total_smiles": 2
+          }
+        },
+        "numerical_stability": {
+          "passed": true,
+          "message": "NaN ratio: 5.0%, Inf ratio: 0.0%",
+          "stats": {
+            "mc_nan_count": 1,
+            "mc_inf_count": 0,
+            "hagan_nan_count": 0,
+            "hagan_inf_count": 0,
+            "nan_ratio": 0.05,
+            "inf_ratio": 0.0
+          }
+        }
+      },
+      "quality_score": 1.0,
+      "parameter_set_index": 0
+    },
+    {
+      "passed": true,
+      "warnings": [],
+      "errors": [],
+      "checks": {
+        "mc_volatility_bounds": {
+          "passed": true,
+          "message": "Monte Carlo volatilities in range [0.1323, 0.1782]",
+          "stats": {
+            "min_volatility": 0.1323335515249439,
+            "max_volatility": 0.17820526077708884,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 9
+          }
+        },
+        "hagan_volatility_bounds": {
+          "passed": true,
+          "message": "Hagan volatilities in range [0.1334, 0.1643]",
+          "stats": {
+            "min_volatility": 0.13339134559505628,
+            "max_volatility": 0.16432827621686083,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 10
+          }
+        },
+        "atm_consistency": {
+          "passed": true,
+          "message": "MC ATM error: 5.03%, Hagan ATM error: 0.03%",
+          "stats": {
+            "mc_atm_volatility": 0.1426430112119317,
+            "hagan_atm_volatility": 0.13584985351512446,
+            "alpha": 0.1358102522433401,
+            "mc_relative_error": 0.05031106897842232,
+            "hagan_relative_error": 0.00029159265320718807
+          }
+        },
+        "data_completeness": {
+          "passed": true,
+          "message": "MC coverage: 90.0%, Hagan coverage: 100.0%",
+          "stats": {
+            "mc_valid_ratio": 0.9,
+            "hagan_valid_ratio": 1.0,
+            "mc_total_points": 10,
+            "hagan_total_points": 10
+          }
+        },
+        "residual_outliers": {
+          "outlier_count": 0,
+          "outlier_ratio": 0.0,
+          "message": "Found 0 outliers (0.0%)",
+          "stats": {
+            "mean_residual": 0.005911670266759896,
+            "std_residual": 0.012160097585820583,
+            "max_z_score": 2.572163580234544,
+            "threshold": 3.0
+          }
+        },
+        "surface_smoothness": {
+          "passed": true,
+          "message": "Smoothness issues in 0/2 smiles",
+          "stats": {
+            "smoothness_ratio": 1.0,
+            "issues_count": 0,
+            "total_smiles": 2
+          }
+        },
+        "numerical_stability": {
+          "passed": true,
+          "message": "NaN ratio: 5.0%, Inf ratio: 0.0%",
+          "stats": {
+            "mc_nan_count": 1,
+            "mc_inf_count": 0,
+            "hagan_nan_count": 0,
+            "hagan_inf_count": 0,
+            "nan_ratio": 0.05,
+            "inf_ratio": 0.0
+          }
+        }
+      },
+      "quality_score": 1.0,
+      "parameter_set_index": 1
+    },
+    {
+      "passed": true,
+      "warnings": [],
+      "errors": [],
+      "checks": {
+        "mc_volatility_bounds": {
+          "passed": true,
+          "message": "Monte Carlo volatilities in range [0.3275, 0.3665]",
+          "stats": {
+            "min_volatility": 0.3275315960565723,
+            "max_volatility": 0.3665287057124543,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 9
+          }
+        },
+        "hagan_volatility_bounds": {
+          "passed": true,
+          "message": "Hagan volatilities in range [0.3668, 0.4156]",
+          "stats": {
+            "min_volatility": 0.36676972000092056,
+            "max_volatility": 0.4156359896115999,
+            "negative_count": 0,
+            "infinite_count": 0,
+            "total_valid": 10
+          }
+        },
+        "atm_consistency": {
+          "passed": true,
+          "message": "MC ATM error: 5.98%, Hagan ATM error: 0.34%",
+          "stats": {
+            "mc_atm_volatility": 0.35783642473537874,
+            "hagan_atm_volatility": 0.37933811974350157,
+            "alpha": 0.3806132564587648,
+            "mc_relative_error": 0.05984245513491117,
+            "hagan_relative_error": 0.0033502162460844146
+          }
+        },
+        "data_completeness": {
+          "passed": true,
+          "message": "MC coverage: 90.0%, Hagan coverage: 100.0%",
+          "stats": {
+            "mc_valid_ratio": 0.9,
+            "hagan_valid_ratio": 1.0,
+            "mc_total_points": 10,
+            "hagan_total_points": 10
+          }
+        },
+        "residual_outliers": {
+          "outlier_count": 0,
+          "outlier_ratio": 0.0,
+          "message": "Found 0 outliers (0.0%)",
+          "stats": {
+            "mean_residual": -0.027782335097689896,
+            "std_residual": 0.025254299368919115,
+            "max_z_score": 2.078127276608395,
+            "threshold": 3.0
+          }
+        },
+        "surface_smoothness": {
+          "passed": true,
+          "message": "Smoothness issues in 0/2 smiles",
+          "stats": {
+            "smoothness_ratio": 1.0,
+            "issues_count": 0,
+            "total_smiles": 2
+          }
+        },
+        "numerical_stability": {
+          "passed": true,
+          "message": "NaN ratio: 5.0%, Inf ratio: 0.0%",
+          "stats": {
+            "mc_nan_count": 1,
+            "mc_inf_count": 0,
+            "hagan_nan_count": 0,
+            "hagan_inf_count": 0,
+            "nan_ratio": 0.05,
+            "inf_ratio": 0.0
+          }
+        }
+      },
+      "quality_score": 1.0,
+      "parameter_set_index": 2
+    }
+  ],
+  "overall_quality_score": 1.0,
+  "common_issues": {}
+}

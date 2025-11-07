@@ -883,3 +883,81 @@ def create_preprocessed_dataset(raw_data_dir: str, output_filepath: str,
         'status': 'placeholder',
         'message': 'Actual implementation depends on raw data format from data generation pipeline'
     }
+
+
+class SABRDataset:
+    """
+    PyTorch-style dataset for SABR volatility surface data.
+    
+    Loads preprocessed data and provides samples for training.
+    """
+    
+    def __init__(self, data_dir: str, split: str = 'train', patch_size: int = 9, 
+                 normalize: bool = True):
+        """
+        Initialize SABR dataset.
+        
+        Args:
+            data_dir: Directory containing preprocessed data
+            split: Data split ('train', 'val', 'test')
+            patch_size: Size of patches (for compatibility)
+            normalize: Whether data is normalized (for compatibility)
+        """
+        self.data_dir = data_dir
+        self.split = split
+        self.patch_size = patch_size
+        self.normalize = normalize
+        
+        # Load data
+        self._load_data()
+    
+    def _load_data(self):
+        """Load data from files."""
+        import pickle
+        
+        # Try to load pickle file first
+        pickle_path = os.path.join(self.data_dir, f"{self.split}_data.pkl")
+        
+        if os.path.exists(pickle_path):
+            with open(pickle_path, 'rb') as f:
+                self.samples = pickle.load(f)
+        else:
+            # Try HDF5 file
+            hdf5_path = os.path.join(self.data_dir, f"{self.split}_data.h5")
+            if os.path.exists(hdf5_path):
+                self._load_from_hdf5(hdf5_path)
+            else:
+                raise FileNotFoundError(f"No data files found for split '{self.split}' in {self.data_dir}")
+    
+    def _load_from_hdf5(self, hdf5_path: str):
+        """Load data from HDF5 file."""
+        self.samples = []
+        
+        with h5py.File(hdf5_path, 'r') as f:
+            n_samples = f.attrs['n_samples']
+            
+            for i in range(n_samples):
+                sample = {
+                    'patch': f['patches'][i],
+                    'features': f['features'][i],
+                    'target': f['targets'][i]
+                }
+                self.samples.append(sample)
+    
+    def __len__(self):
+        """Return number of samples."""
+        return len(self.samples)
+    
+    def __getitem__(self, idx):
+        """Get a single sample."""
+        sample = self.samples[idx]
+        
+        # Convert to numpy arrays and handle NaN values
+        patch = np.array(sample['patch'], dtype=np.float32)
+        features = np.array(sample['features'], dtype=np.float32)
+        target = float(sample['target'])
+        
+        # Replace NaN with zeros in patches
+        patch = np.nan_to_num(patch, nan=0.0)
+        
+        return patch, features, target

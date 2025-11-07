@@ -1,0 +1,45 @@
+# SABR Volatility Surface Data Generation Configuration
+
+# Data Generation Parameters
+n_parameter_sets: 1000          # Number of SABR parameter sets to generate
+sampling_strategy: "lhs"        # Parameter sampling strategy: uniform, lhs, stratified
+
+# Monte Carlo Parameters
+mc_paths: 50000                 # Number of Monte Carlo paths per surface (balanced speed/accuracy)
+mc_steps: 300                   # Number of time steps for MC simulation
+use_antithetic: true           # Use antithetic variates for variance reduction
+convergence_check: true        # Check convergence during simulation
+
+# Grid Parameters (following Funahashi's approach)
+n_strikes: 21                  # Number of strikes per maturity (Funahashi uses 21)
+n_maturities: 1                # Single maturity for comparison
+maturity_range: [3.0, 3.01]   # Single maturity: 3 years for comparison
+use_funahashi_strikes: true    # Use Funahashi's strike calculation method
+add_wing_strikes: true         # Add extended wing strikes for research
+
+# Preprocessing Parameters
+patch_size: 9                  # Size of surface patches for MDA-CNN
+validation_split: 0.15         # Fraction of data for validation
+test_split: 0.15              # Fraction of data for testing
+normalize_patches: true        # Whether to normalize patches
+normalize_features: true       # Whether to normalize point features
+min_samples_per_surface: 10    # Minimum samples to extract per surface
+max_samples_per_surface: 50    # Maximum samples to extract per surface
+
+# Processing Parameters
+parallel_processing: true      # Use parallel processing for data generation
+n_workers: null               # Number of worker processes (null = auto-detect)
+create_visualizations: false  # Create visualization plots (set to true for debugging)
+save_intermediate: true       # Save intermediate results during generation
+
+# Quality Control
+validation_enabled: true      # Enable data quality validation
+numerical_tolerance: 1.0e-12  # Tolerance for numerical stability checks
+
+# Output Parameters
+output_dir: "data"            # Base output directory
+create_hdf5: true            # Create HDF5 files for efficient loading
+batch_size: 64               # Batch size for data loading
+
+# Reproducibility
+random_seed: 42              # Random seed for reproducibility

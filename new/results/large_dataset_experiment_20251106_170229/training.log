@@ -1,0 +1,11 @@
+2025-11-06 17:02:29,554 - INFO - Starting large dataset training experiment...
+2025-11-06 17:02:29,560 - INFO - Training samples: 700
+2025-11-06 17:02:29,560 - INFO - Validation samples: 150
+2025-11-06 17:02:29,560 - INFO - Test samples: 150
+2025-11-06 17:02:42,567 - INFO - Patch size: 9x9
+2025-11-06 17:02:42,567 - INFO - Number of features: 10
+2025-11-06 17:02:42,572 - INFO - MDA-CNN parameters: 195,937
+2025-11-06 17:02:42,572 - INFO - Funahashi parameters: 4,609
+2025-11-06 17:02:42,572 - INFO - Training MDA-CNN...
+2025-11-06 17:02:42,573 - INFO - Using device: cpu
+2025-11-06 17:02:57,136 - ERROR - Training failed: mat1 and mat2 shapes cannot be multiplied (64x128 and 256x128)

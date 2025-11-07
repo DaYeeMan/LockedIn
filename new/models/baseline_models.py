@@ -549,3 +549,189 @@ def create_baseline_interface(model_name: str, **kwargs) -> BaselineModelInterfa
     
     model = model_factories[model_name](**kwargs)
     return BaselineModelInterface(model, model_name)
+# PyTorch Implementation for main training scripts
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class FunahashiBaselineModel(nn.Module):
+    """
+    PyTorch implementation of Funahashi's exact baseline model.
+    
+    Architecture: 5 layers, 32 neurons each, ReLU activation, residual learning
+    Input: Point features (SABR parameters, strike, maturity, etc.)
+    Output: Residual D(ξ) = σ_MC(ξ) - σ_Hagan(ξ)
+    
+    This matches Funahashi's paper exactly for direct comparison.
+    """
+    
+    def __init__(self, n_point_features: int = 10):
+        super(FunahashiBaselineModel, self).__init__()
+        
+        self.n_point_features = n_point_features
+        
+        # Exact Funahashi architecture: 5 layers, 32 neurons, ReLU
+        self.dense1 = nn.Linear(n_point_features, 32)
+        self.dense2 = nn.Linear(32, 32)
+        self.dense3 = nn.Linear(32, 32)
+        self.dense4 = nn.Linear(32, 32)
+        self.dense5 = nn.Linear(32, 32)
+        
+        # Residual output layer (linear activation for residual learning)
+        self.residual_output = nn.Linear(32, 1)
+        
+    def forward(self, x):
+        """
+        Forward pass through Funahashi baseline model.
+        
+        Args:
+            x: Tensor of shape (batch_size, n_point_features)
+            
+        Returns:
+            Tensor of shape (batch_size, 1) - Residual predictions
+        """
+        # 5 hidden layers with ReLU activation
+        x = F.relu(self.dense1(x))
+        x = F.relu(self.dense2(x))
+        x = F.relu(self.dense3(x))
+        x = F.relu(self.dense4(x))
+        x = F.relu(self.dense5(x))
+        
+        # Linear output for residual learning
+        residual = self.residual_output(x)
+        
+        return residual
+    
+    def count_parameters(self):
+        """Count total number of trainable parameters."""
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
+    
+    def get_model_info(self):
+        """Get model architecture information."""
+        return {
+            'total_parameters': self.count_parameters(),
+            'architecture': '5 layers, 32 neurons each',
+            'activation': 'ReLU',
+            'output': 'Linear (residual learning)',
+            'n_point_features': self.n_point_features
+        }
+
+
+class DirectMLPModel(nn.Module):
+    """
+    Direct MLP model that predicts volatility directly from point features.
+    
+    This is an alternative baseline that doesn't use residual learning.
+    """
+    
+    def __init__(self, n_point_features: int = 10, hidden_dims: List[int] = None):
+        super(DirectMLPModel, self).__init__()
+        
+        self.n_point_features = n_point_features
+        hidden_dims = hidden_dims or [64, 64, 32]
+        
+        # Build MLP layers
+        layers = []
+        in_dim = n_point_features
+        
+        for hidden_dim in hidden_dims:
+            layers.extend([
+                nn.Linear(in_dim, hidden_dim),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm1d(hidden_dim)
+            ])
+            in_dim = hidden_dim
+        
+        # Output layer for direct volatility prediction
+        layers.append(nn.Linear(in_dim, 1))
+        
+        self.mlp = nn.Sequential(*layers)
+        
+    def forward(self, x):
+        """Forward pass for direct volatility prediction."""
+        return self.mlp(x)
+    
+    def count_parameters(self):
+        """Count total number of trainable parameters."""
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
+
+
+class ResidualMLPModel(nn.Module):
+    """
+    Residual MLP model that predicts residuals from point features only.
+    
+    Similar to Funahashi but with different architecture for comparison.
+    """
+    
+    def __init__(self, n_point_features: int = 10, hidden_dims: List[int] = None):
+        super(ResidualMLPModel, self).__init__()
+        
+        self.n_point_features = n_point_features
+        hidden_dims = hidden_dims or [128, 64, 32]
+        
+        # Build MLP layers
+        layers = []
+        in_dim = n_point_features
+        
+        for hidden_dim in hidden_dims:
+            layers.extend([
+                nn.Linear(in_dim, hidden_dim),
+                nn.ReLU(inplace=True),
+                nn.Dropout(0.1)
+            ])
+            in_dim = hidden_dim
+        
+        # Output layer for residual prediction
+        layers.append(nn.Linear(in_dim, 1))
+        
+        self.mlp = nn.Sequential(*layers)
+        
+    def forward(self, x):
+        """Forward pass for residual prediction."""
+        return self.mlp(x)
+    
+    def count_parameters(self):
+        """Count total number of trainable parameters."""
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)
+
+
+def create_funahashi_baseline(n_point_features: int = 10) -> FunahashiBaselineModel:
+    """
+    Create Funahashi baseline model with exact architecture.
+    
+    Args:
+        n_point_features: Number of input features
+        
+    Returns:
+        FunahashiBaselineModel instance
+    """
+    return FunahashiBaselineModel(n_point_features=n_point_features)
+
+
+def create_direct_mlp(n_point_features: int = 10, hidden_dims: List[int] = None) -> DirectMLPModel:
+    """
+    Create direct MLP baseline model.
+    
+    Args:
+        n_point_features: Number of input features
+        hidden_dims: Hidden layer dimensions
+        
+    Returns:
+        DirectMLPModel instance
+    """
+    return DirectMLPModel(n_point_features=n_point_features, hidden_dims=hidden_dims)
+
+
+def create_residual_mlp(n_point_features: int = 10, hidden_dims: List[int] = None) -> ResidualMLPModel:
+    """
+    Create residual MLP baseline model.
+    
+    Args:
+        n_point_features: Number of input features
+        hidden_dims: Hidden layer dimensions
+        
+    Returns:
+        ResidualMLPModel instance
+    """
+    return ResidualMLPModel(n_point_features=n_point_features, hidden_dims=hidden_dims)

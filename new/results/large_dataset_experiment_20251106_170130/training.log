@@ -1,0 +1,11 @@
+2025-11-06 17:01:30,656 - INFO - Starting large dataset training experiment...
+2025-11-06 17:01:30,666 - INFO - Training samples: 700
+2025-11-06 17:01:30,666 - INFO - Validation samples: 150
+2025-11-06 17:01:30,666 - INFO - Test samples: 150
+2025-11-06 17:01:44,934 - INFO - Patch size: 9x9
+2025-11-06 17:01:44,934 - INFO - Number of features: 10
+2025-11-06 17:01:44,937 - INFO - MDA-CNN parameters: 195,937
+2025-11-06 17:01:44,938 - INFO - Funahashi parameters: 4,609
+2025-11-06 17:01:44,939 - INFO - Training MDA-CNN...
+2025-11-06 17:01:44,941 - INFO - Using device: cpu
+2025-11-06 17:01:46,977 - ERROR - Training failed: ReduceLROnPlateau.__init__() got an unexpected keyword argument 'verbose'

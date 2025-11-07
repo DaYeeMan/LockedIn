@@ -19,6 +19,8 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Run SABR volatility surface experiment')
     parser.add_argument('--config', type=str, default='config/training_config.yaml',
                        help='Path to training configuration file')
+    parser.add_argument('--data-config', type=str, default='config/data_generation_config.yaml',
+                       help='Path to data generation configuration file')
     parser.add_argument('--data-dir', type=str, default='data/processed',
                        help='Directory containing preprocessed training data')
     parser.add_argument('--output-dir', type=str, default='results',
@@ -30,12 +32,16 @@ def parse_arguments():
                        help='Device to use for training and evaluation')
     parser.add_argument('--seed', type=int, default=42,
                        help='Random seed for reproducibility')
+    parser.add_argument('--skip-data-generation', action='store_true',
+                       help='Skip data generation (assumes data already exists)')
     parser.add_argument('--skip-training', action='store_true',
                        help='Skip training and only run evaluation')
     parser.add_argument('--skip-evaluation', action='store_true',
                        help='Skip evaluation and only run training')
     parser.add_argument('--detailed-analysis', action='store_true',
                        help='Generate detailed analysis during evaluation')
+    parser.add_argument('--generate-data-only', action='store_true',
+                       help='Only generate data and exit')
     return parser.parse_args()
 
 
@@ -108,18 +114,63 @@ def run_evaluation(experiment_dir, args):
     return True
 
 
+def run_data_generation(args):
+    """Run the data generation script."""
+    print("Starting data generation phase...")
+    
+    cmd = [
+        sys.executable, 'generate_training_data.py',
+        '--config', args.data_config,
+        '--output-dir', 'data',
+        '--seed', str(args.seed)
+    ]
+    
+    result = subprocess.run(cmd, cwd=Path(__file__).parent)
+    
+    if result.returncode != 0:
+        print("Data generation failed!")
+        return False
+    
+    print("Data generation completed successfully!")
+    return True
+
+
 def main():
     """Main experiment runner."""
     args = parse_arguments()
     
     print("SABR Volatility Surface Model Comparison Experiment")
     print("=" * 55)
-    print(f"Configuration: {args.config}")
+    print(f"Training config: {args.config}")
+    print(f"Data config: {args.data_config}")
     print(f"Data directory: {args.data_dir}")
     print(f"Output directory: {args.output_dir}")
     print(f"Device: {args.device}")
     print(f"Random seed: {args.seed}")
     print()
+    
+    # Run data generation phase
+    if not args.skip_data_generation:
+        # Check if data already exists
+        data_path = Path(args.data_dir)
+        if data_path.exists() and any(data_path.iterdir()):
+            print(f"Data already exists in {args.data_dir}")
+            response = input("Regenerate data? (y/N): ").strip().lower()
+            if response in ['y', 'yes']:
+                success = run_data_generation(args)
+                if not success:
+                    print("Experiment failed during data generation phase!")
+                    return 1
+        else:
+            success = run_data_generation(args)
+            if not success:
+                print("Experiment failed during data generation phase!")
+                return 1
+    
+    # Exit if only generating data
+    if args.generate_data_only:
+        print("Data generation completed. Exiting as requested.")
+        return 0
     
     experiment_dir = None
     
@@ -153,6 +204,7 @@ def main():
     
     # Print summary of generated files
     print("\nGenerated files:")
+    print("- Generated training data")
     print("- Training logs and model checkpoints")
     print("- Evaluation metrics and comparison tables")
     print("- Comprehensive visualization plots")

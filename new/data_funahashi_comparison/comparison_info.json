@@ -1,0 +1,72 @@
+{
+  "description": "Direct comparison with Funahashi results",
+  "test_cases": [
+    {
+      "name": "Case A",
+      "params": {
+        "F0": 1.0,
+        "alpha": 0.5,
+        "beta": 0.6,
+        "nu": 0.3,
+        "rho": -0.2
+      }
+    },
+    {
+      "name": "Case B",
+      "params": {
+        "F0": 1.0,
+        "alpha": 0.5,
+        "beta": 0.9,
+        "nu": 0.3,
+        "rho": -0.2
+      }
+    },
+    {
+      "name": "Case C",
+      "params": {
+        "F0": 1.0,
+        "alpha": 0.5,
+        "beta": 0.3,
+        "nu": 0.3,
+        "rho": -0.2
+      }
+    },
+    {
+      "name": "Case D",
+      "params": {
+        "F0": 1.0,
+        "alpha": 0.5,
+        "beta": 0.6,
+        "nu": 0.3,
+        "rho": -0.5
+      }
+    }
+  ],
+  "strikes": [
+    0.4,
+    0.485,
+    0.57,
+    0.655,
+    0.74,
+    0.825,
+    0.91,
+    0.995,
+    1.08,
+    1.165,
+    1.25,
+    1.335,
+    1.42,
+    1.505,
+    1.59,
+    1.675,
+    1.76,
+    1.845,
+    1.93,
+    2.015,
+    2.1
+  ],
+  "maturity": 3.0,
+  "mc_paths": 100000,
+  "generation_time": 20.58472466468811,
+  "quality_score": 0.9964285714285714
+}

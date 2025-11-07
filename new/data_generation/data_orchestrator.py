@@ -541,6 +541,8 @@ class DataOrchestrator:
             return self.parameter_sampler.latin_hypercube_sampling(self.config.n_parameter_sets)
         elif self.config.sampling_strategy == "stratified":
             return self.parameter_sampler.stratified_sampling(self.config.n_parameter_sets)
+        elif self.config.sampling_strategy == "funahashi_exact":
+            return self.parameter_sampler.funahashi_exact_sampling(self.config.n_parameter_sets)
         else:
             raise ValueError(f"Unknown sampling strategy: {self.config.sampling_strategy}")
     

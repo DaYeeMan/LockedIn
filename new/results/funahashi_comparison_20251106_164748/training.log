@@ -1,0 +1,8 @@
+2025-11-06 16:47:48,757 - INFO - Starting Funahashi comparison training...
+2025-11-06 16:47:48,806 - INFO - Training samples: 84
+2025-11-06 16:47:48,828 - INFO - Patch size: 9x9
+2025-11-06 16:47:48,828 - INFO - Number of features: 10
+2025-11-06 16:47:48,853 - INFO - MDA-CNN parameters: 147,777
+2025-11-06 16:47:48,853 - INFO - Funahashi parameters: 4,609
+2025-11-06 16:47:48,853 - INFO - Training MDA-CNN...
+2025-11-06 16:47:50,971 - ERROR - Training failed: Found dtype Double but expected Float

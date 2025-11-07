@@ -291,6 +291,18 @@ class ParameterSampler:
         
         return params_list
     
+    def funahashi_exact_sampling(self, n_samples: int = 4) -> List[SABRParams]:
+        """
+        Generate Funahashi's exact test cases for direct comparison.
+        
+        Args:
+            n_samples: Number of samples (should be 4 for Funahashi's cases)
+            
+        Returns:
+            List of SABRParams with Funahashi's exact test cases
+        """
+        return FunahashiTestCases.get_test_cases()[:n_samples]
+    
     def latin_hypercube_sampling(self, n_samples: int, F0: float = 1.0) -> List[SABRParams]:
         """
         Generate parameter sets using Latin Hypercube Sampling for better coverage.
@@ -393,3 +405,66 @@ class ParameterSampler:
             self.rng.shuffle(samples[:, dim])
         
         return samples
+
+class FunahashiTestCases:
+    """
+    Funahashi's exact test cases for direct comparison.
+    
+    This class provides the exact SABR parameter sets used in Funahashi's paper
+    for direct result comparison.
+    """
+    
+    @staticmethod
+    def get_test_cases() -> List[SABRParams]:
+        """
+        Get Funahashi's exact test cases from his paper.
+        
+        Returns:
+            List of SABRParams for the 4 test cases
+        """
+        test_cases = [
+            # Case A: f=1, α=0.5, β=0.6, ν=0.3, ρ=-0.2
+            SABRParams(F0=1.0, alpha=0.5, beta=0.6, nu=0.3, rho=-0.2),
+            
+            # Case B: f=1, α=0.5, β=0.9, ν=0.3, ρ=-0.2
+            SABRParams(F0=1.0, alpha=0.5, beta=0.9, nu=0.3, rho=-0.2),
+            
+            # Case C: f=1, α=0.5, β=0.3, ν=0.3, ρ=-0.2
+            SABRParams(F0=1.0, alpha=0.5, beta=0.3, nu=0.3, rho=-0.2),
+            
+            # Case D: f=1, α=0.5, β=0.6, ν=0.3, ρ=-0.5
+            SABRParams(F0=1.0, alpha=0.5, beta=0.6, nu=0.3, rho=-0.5),
+        ]
+        
+        return test_cases
+    
+    @staticmethod
+    def get_funahashi_strikes() -> np.ndarray:
+        """
+        Get Funahashi's exact strike values from Table 3.
+        
+        Returns:
+            Array of strike values used in Funahashi's paper
+        """
+        return np.array([
+            0.4, 0.485, 0.57, 0.655, 0.74, 0.825, 0.91, 0.995, 1.08,
+            1.165, 1.25, 1.335, 1.42, 1.505, 1.59, 1.675, 1.76, 1.845,
+            1.93, 2.015, 2.1
+        ])
+    
+    @staticmethod
+    def get_case_names() -> List[str]:
+        """Get case names for labeling."""
+        return ["Case A", "Case B", "Case C", "Case D"]
+
+
+def create_funahashi_comparison_sampler() -> 'ParameterSampler':
+    """
+    Create a parameter sampler configured for Funahashi comparison.
+    
+    Returns:
+        ParameterSampler instance with Funahashi's exact test cases
+    """
+    sampler = ParameterSampler(random_seed=12345)
+    sampler._funahashi_mode = True
+    return sampler
